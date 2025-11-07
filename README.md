@@ -1,6 +1,6 @@
 # Senior Project Proposal: Cold Boot Attack on RISC-V
 
-**Project Title:** Develop open source tools to demonstrate a cold boot attack on RISC-V<br>
+**Project Title:** Analysis of Cold Boot Vulnerabilities on RISC-V and Mitigation Strategies<br>
 **Student:** Gabriel Bauer<br>
 **Faculty Advisor:** Nat Tuck<br>
 **Department:** Computer Science<br> 
@@ -26,6 +26,28 @@ The "attack" part would be considered successful if it can dump memory from a "s
 - CS2470 - Systems Programming in C/C++
 - CS4250 - Computer Architecture
 - CS4310 - Operating Systems
+
+## Ethics Statement
+
+**1. Research Purpose and Positive Intent:**
+The primary goal of this research is to improve the security posture of the RISC-V ecosystem. By practically demonstrating a cold boot attack in a controlled lab environment, this project aims to provide a tangible, evidence-based argument for the adoption of hardware-based security mitigations, such as secure key storage within the processor package, similar to those implemented in modern commercial devices. The ultimate outcome is constructive, seeking to strengthen systems against a known class of physical threats.
+
+**2. Controlled and Authorized Environment:**
+All testing and analysis will be conducted exclusively on hardware that I own or have explicit, written authorization to test. The target RISC-V machine will be a dedicated device within a private lab setting. **No tests will be performed on systems owned by the university, third parties, or any production environment.** The research is confined to a closed, physical system to prevent any unintended side effects or network exposure.
+
+**3. Explicit Threat Model and Limitations:**
+This research investigates a specific threat model with critical limitations that inherently contain its risk:
+
+   - **It requires physical access** to the target machine.
+   - **It requires the machine to be in a pre-existing "on" state** with its memory in a powered, un-zeroized condition.
+   - **It is only viable against systems lacking specific hardware countermeasures.**
+    This project does not involve remote exploitation, social engineering, or any action that would compromise the privacy or security of individuals or organizations.
+
+**4. Commitment to Responsible Disclosure and Open Science:**
+All code developed for this project will be released as open-source software. This commitment to transparency ensures that the findings can be reviewed, replicated, and built upon by the academic and security community for defensive purposes. The publication of this research will focus on the methodology and results as they pertain to the vulnerability's mechanics and the proposed design principles for effective hardware mitigations.
+
+**5. Legal and Ethical Compliance:**
+This project will be conducted in full compliance with all applicable university policies, including the Acceptable Use Policy policy, as well as relevant local and federal laws. The work is strictly academic and is designed to contribute to the field of computer security in an ethical and lawful manner.
 
 ### 16-Week Senior Project Plan
 
