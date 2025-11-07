@@ -40,8 +40,8 @@ This research investigates a specific threat model with critical limitations tha
 
    - **It requires physical access** to the target machine.
    - **It requires the machine to be in a pre-existing "on" state** with its memory in a powered, un-zeroized condition.
-   - **It is only viable against systems lacking specific hardware countermeasures.**
-    This project does not involve remote exploitation, social engineering, or any action that would compromise the privacy or security of individuals or organizations.
+   - **It is only viable against systems lacking specific hardware countermeasures.**<br>
+This project does not involve remote exploitation, social engineering, or any action that would compromise the privacy or security of individuals or organizations.
 
 **4. Commitment to Responsible Disclosure and Open Science:**
 All code developed for this project will be released as open-source software. This commitment to transparency ensures that the findings can be reviewed, replicated, and built upon by the academic and security community for defensive purposes. The publication of this research will focus on the methodology and results as they pertain to the vulnerability's mechanics and the proposed design principles for effective hardware mitigations.
