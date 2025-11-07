@@ -33,7 +33,7 @@ The "attack" part would be considered successful if it can dump memory from a "s
 The primary goal of this research is to improve the security posture of the RISC-V ecosystem. By practically demonstrating a cold boot attack in a controlled lab environment, this project aims to provide a tangible, evidence-based argument for the adoption of hardware-based security mitigations, such as secure key storage within the processor package, similar to those implemented in modern commercial devices. The ultimate outcome is constructive, seeking to strengthen systems against a known class of physical threats.
 
 **2. Controlled and Authorized Environment:**
-All testing and analysis will be conducted exclusively on hardware that I own or have explicit, written authorization to test. The target RISC-V machine will be a dedicated device within a private lab setting. **No tests will be performed on systems owned by the university, third parties, or any production environment.** The research is confined to a closed, physical system to prevent any unintended side effects or network exposure.
+All testing and analysis will be conducted exclusively on hardware that I own. The target RISC-V machine will be a dedicated device within a private lab setting. **No tests will be performed on systems owned by the university, third parties, or any production environment.** The research is confined to a closed, physical system to prevent any unintended side effects or network exposure.
 
 **3. Explicit Threat Model and Limitations:**
 This research investigates a specific threat model with critical limitations that inherently contain its risk:
