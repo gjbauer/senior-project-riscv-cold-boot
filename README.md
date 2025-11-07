@@ -129,7 +129,7 @@ This plan is aggressive. I will need to be disciplined and proactive.
         1.  Write a separate, host-based analysis tool (in Python or C) that can parse my memory dump file.
         2.  Implement a simple entropy calculation function (e.g., Shannon entropy).
         3.  Implement a sliding window that scans the memory dump, calculating the entropy of each chunk (e.g., 32-byte chunks). Flag chunks with entropy above a certain threshold as potential keys.
-        4.  Implement a simple pattern search to find the specific known key you planted.
+        4.  Implement a simple pattern search to find the specific known key I planted.
     *   **Deliverable:** A host-based tool that can successfully locate the known key inside a memory dump.
 
 *   **Week 13: Integration & Testing**
