@@ -1,0 +1,6 @@
+[submodule "ColdQEMUTest"]
+	path = ColdQEMUTest
+	url = https://github.com/gjbauer/ColdQEMUTest.git
+[submodule "ColdExploitKit"]
+	path = ColdExploitKit
+	url = https://github.com/gjbauer/ColdExploitKit
