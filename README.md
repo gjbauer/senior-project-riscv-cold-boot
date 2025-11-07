@@ -49,7 +49,7 @@ All code developed for this project will be released as open-source software. Th
 **5. Legal and Ethical Compliance:**
 This project will be conducted in full compliance with all applicable university policies, including the Acceptable Use Policy policy, as well as relevant local and federal laws. The work is strictly academic and is designed to contribute to the field of computer security in an ethical and lawful manner.
 
-### 16-Week Senior Project Plan
+## 16-Week Senior Project Plan
 
 This plan is aggressive. I will need to be disciplined and proactive.
 
