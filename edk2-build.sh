@@ -36,52 +36,73 @@ case "$OS" in
 			if [ "$ID" = "arch" ]; then
 				echo "Supported Linux distribution: Arch Linux!!"
 				
-				DEPENDENCIES="git clang base-devel python python-pip acpica dosfstools"
+				DEPENDENCIES="git clang base-devel python python-pip acpica dosfstools util-linux"
 				echo "Updating repositories..."
 				if ! sudo pacman -Sy > /dev/null 2>&1; then
 					echo "Failed to update repositories!!"
-					exit 1
+					return 1
 				fi
 				echo "Checking dependencies..."
 				for pkg in $DEPENDENCIES; do
 					if ! pacman -Qi "$pkg" > /dev/null 2>&1; then
 						echo "Installing missing dependency: $pkg"
-						if ! sudo pacman -S --noconfirm "$pkg"; then
+						if ! sudo pacman -S --noconfirm "$pkg" > /dev/null 2>&1; then
 							echo "Failed to install package!!"
-							exit 1
+							return 1
+						fi
+					else
+						echo "Dependency already installed: $pkg"
+					fi
+				done
+            elif [ "$ID" = "linuxmint" ]; then
+                echo "Supported Linux distribution: Linux Mint!!"
+				
+				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
+				echo "Updating repositories..."
+				if ! sudo apt update > /dev/null 2>&1; then
+					echo "Failed to update repositories!!"
+					return 1
+				fi
+				echo "Checking dependencies..."
+				for pkg in $DEPENDENCIES; do
+					if ! dpkg -s "$pkg" > /dev/null 2>&1; then
+						echo "Installing missing dependency: $pkg"
+						if ! sudo apt install -y "$pkg" > /dev/null 2>&1; then
+							echo "Failed to install package!!"
+							return 1
 						fi
 					else
 						echo "Dependency already installed: $pkg"
 					fi
 				done
 			else
-				echo "Unsupported Linux distribution! Exiting..."
-				exit 1
+				echo "Unsupported Linux distribution! returning..."
+				return 1
 			fi
 		else
-			echo "Cannot find release information!! Exiting..."
-			exit 1
+			echo "Cannot find release information!! returning..."
+			return 1
 		fi
 	;;
     Darwin)
 	echo "Operating System: macOS"
-	echo "Unsupported OS: Exiting!"
-	exit 1
+	echo "Unsupported OS: returning!"
+	return 1
 	;;
     FreeBSD)
 	echo "Operating System: FreeBSD"
-	echo "Unsupported OS: Exiting!"
-	exit 1
+	echo "Unsupported OS: returning!"
+	return 1
 	;;
     CYGWIN*|MINGW32*|MSYS*)
 	echo "Operating System: Windows (via Cygwin/MinGW/MSYS)"
-	echo "Unsupported OS: Exiting!"
-	exit 1
+	echo "Unsupported OS: returning!"
+	return 1
 	;;
     *)
 	echo "Operating System: Unknown ($OS)"
-	echo "Unsupported OS: Exiting!"
-	exit 1
+	echo "Unsupported OS: returning!"
+	return 1
 	;;
 esac
 
@@ -95,13 +116,13 @@ else
 	git clone https://github.com/tianocore/edk2.git --depth 1 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		echo "Repository pull failed!!"
-		exit 1
+		return 1
 	fi
 	cd edk2
 	git submodule update --init --depth 1 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		echo "Submodule pull failed!!"
-		exit 1
+		return 1
 	fi
 fi
 
@@ -113,7 +134,7 @@ make -C BaseTools > build-log.txt 2>&1
 if [ $? -ne 0 ]; then
 	echo "Build failed!! Check build log for details..."
 	echo "Consider running 'tail build-log.txt'"
-	exit 1
+	return 1
 else
 	rm build-log.txt
 fi
@@ -123,7 +144,9 @@ echo "Setting up development environment"
 source ./edksetup.sh BaseTools > /dev/null 2>&1
 if [ $? -ne 0 ]; then
 	echo "Setup failed!!"
-	exit 1
+	return 1
 fi
+
+cd ..
 
 echo "EDK2 environment setup completed successfully!"
