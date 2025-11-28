@@ -49,6 +49,66 @@ All code developed for this project will be released as open-source software. Th
 **5. Legal and Ethical Compliance:**
 This project will be conducted in full compliance with all applicable university policies, including the Acceptable Use Policy policy, as well as relevant local and federal laws. The work is strictly academic and is designed to contribute to the field of computer security in an ethical and lawful manner.
 
+---
+
+### **Project Justification**
+The RISC-V architecture is gaining significant traction as an open and customizable alternative to x86 and ARM. However, its security model, particularly against physical attacks, is less explored. The cold boot attack is a well-known class of hardware vulnerability that has been proven effective on other architectures. By demonstrating its viability on RISC-V, this project provides critical, evidence-based research that highlights the need for hardware-based security mitigations (like secure key storage) within the growing RISC-V ecosystem, thereby contributing to the development of more secure systems.
+
+### **Project Scope**
+This project scope includes:
+- Setting up a RISC-V development and testing environment using QEMU and EDK2.
+- Developing a UEFI application for the SiFive HiFive Unmatched B that can dump physical memory to a storage device.
+- Creating a host-based analysis tool (in Rust) to scan memory dumps for high-entropy data and specific keys.
+- Validating the framework in a simulated environment (QEMU) and, as a stretch goal, on physical hardware.
+- Documenting the process, challenges, and results in a final report.
+
+### **Project Objectives**
+1.  Successfully boot a RISC-V system using UEFI in a QEMU virtual machine.
+2.  Develop and run a custom "Hello World" UEFI application.
+3.  Create a UEFI application that can dump the system's physical memory to a file.
+4.  Develop a key-finding algorithm that can identify a known cryptographic key within a memory dump.
+5.  Integrate all components into a working proof-of-concept that demonstrates the full attack chain in simulation.
+6.  (Stretch) Port and successfully demonstrate the attack on a physical SiFive HiFive Unmatched B.
+
+### **Project Deliverables**
+1.  A fully documented RISC-V/QEMU/EDK2 development environment.
+2.  Source code for the memory-dumping UEFI application.
+3.  Source code for the host-based memory analysis tool.
+4.  A final project report detailing the methodology, challenges, and results.
+5.  A final presentation, including a live or video demonstration of the attack.
+6.  All project artifacts hosted in a public, open-source repository.
+
+### **Project Exclusions**
+- This project will not develop new hardware mitigations against cold boot attacks; it focuses on demonstrating the vulnerability.
+- It will not involve attacking systems not owned by the student (university, third-party, or production systems).
+- It will not explore remote exploitation or social engineering techniques.
+- The project will not attempt to defeat advanced, hardware-based memory encryption specifically designed to counter cold boot attacks.
+
+### **Project Constraints**
+- **Time:** The project must be completed within the 16-week semester timeline.
+- **Resources:** Dependent on the acquisition and reliable operation of the SiFive HiFive Unmatched B board.
+- **Complexity:** The project intersects multiple complex domains (RISC-V, UEFI, memory forensics) with potentially limited documentation.
+- **Hardware Limitation:** The core cold boot effect (memory decay) cannot be simulated in QEMU and requires physical hardware for final validation.
+
+### **Project Assumptions**
+- The SiFive HiFive Unmatched B board will be available for the project.
+- The UEFI firmware for RISC-V will be stable enough for development and testing.
+- The physical memory mapping at boot time will allow access to RAM contents from a previous session.
+- Sufficient documentation or community support can be found to overcome technical hurdles in UEFI and RISC-V development.
+
+### **Stakeholders**
+- **Primary Stakeholder:** Gabriel Bauer (Student Researcher)
+- **Faculty Advisor:** Nat Tuck
+- **Computer Science Department:** As the overseeing academic body.
+- **Security & Academic Community:** As beneficiaries of the open-source research and findings.
+
+### **Resources Required**
+- **Hardware:** SiFive HiFive Unmatched B, microSD cards, microSD to USB adapter, compressed air canister.
+- **Software:** Linux OS, QEMU, EDK2 (TianoCore), Clang/LLVM toolchain.
+- **Documentation:** RISC-V specifications, UEFI specifications, TianoCore/EDK2 documentation, SiFive chip manuals.
+
+---
+
 ## 16-Week Senior Project Plan
 
 This plan is aggressive. I will need to be disciplined and proactive.
@@ -207,4 +267,3 @@ This plan is aggressive. I will need to be disciplined and proactive.
 - RISC-V documentation and specs
 - Shannon entropy algorithm references
 - Online forums and communities
-
