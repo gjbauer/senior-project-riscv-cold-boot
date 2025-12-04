@@ -164,6 +164,7 @@ This plan is aggressive. I will need to be disciplined and proactive.
         1.  Learn how to read from physical memory addresses in UEFI. (This often involves understanding that the OS may not have overwritten the identity mapping present at boot).
         2.  Write a function that, given a starting physical address and a length, reads the memory content.
         3.  Modify my application to dump the entire "Conventional Memory" region to a file on the virtual disk.
+        4.  Create a simple C program to run on the target operating system which loads a string into RAM (e.g. The quick brown fox jumps over the lazy dog.) And search in a manner similar to the command `strings` to find such ASCII strings in memory and print them to the console.
     *   **Deliverable:** An application that can create a binary file containing a dump of system RAM.
 
 *   **Week 9: microSD Card Storage Protocol**
