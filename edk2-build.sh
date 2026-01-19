@@ -91,8 +91,26 @@ case "$OS" in
 	;;
     FreeBSD)
 	echo "Operating System: FreeBSD"
-	echo "Unsupported OS: returning!"
-	return 1
+	echo "Supported OS!"
+
+		DEPENDENCIES="git clang base-devel python311 py311-pip acpica-tools linux-c7-dosfstools e2fsprogs"
+		echo "Updating repositories..."
+		if ! doas pkg update > /dev/null 2>&1; then
+			echo "Failed to update repositories!!"
+			return 1
+		fi
+		echo "Checking dependencies..."
+		for pkf in $DEPENDENCIES; do
+			if ! pkg info "$pkg" > /dev/null 2>&1; then
+				echo "Installing missing dependency: $pkg"
+				if ! doas pkg install -y "$pkg"; then
+					echo "Failed to install package!!"
+					return 1
+				fi
+			else
+				echo "Dependency already installed: $pkg"
+			fi
+		done
 	;;
     CYGWIN*|MINGW32*|MSYS*)
 	echo "Operating System: Windows (via Cygwin/MinGW/MSYS)"
