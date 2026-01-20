@@ -28,6 +28,8 @@
 
 OS=$(uname -s)
 
+setopt SH_WORD_SPLIT
+
 case "$OS" in
     Linux)
 	echo "Operating System: Linux"
@@ -59,7 +61,7 @@ case "$OS" in
 				
 				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
 				echo "Updating repositories..."
-				if ! sudo apt update > /dev/null 2>&1; then
+				if ! sudo apt update -y > /dev/null 2>&1; then
 					echo "Failed to update repositories!!"
 					return 1
 				fi
@@ -93,17 +95,17 @@ case "$OS" in
 	echo "Operating System: FreeBSD"
 	echo "Supported OS!"
 
-		DEPENDENCIES="git clang base-devel python311 py311-pip acpica-tools linux-c7-dosfstools e2fsprogs"
+		DEPENDENCIES="git FreeBSD-clang python python3 py311-pip acpica-tools e2fsprogs gmake"
 		echo "Updating repositories..."
-		if ! doas pkg update > /dev/null 2>&1; then
+		if ! env IGNORE_OSVERSION=yes doas pkg update > /dev/null 2>&1 ; then
 			echo "Failed to update repositories!!"
 			return 1
 		fi
 		echo "Checking dependencies..."
-		for pkf in $DEPENDENCIES; do
-			if ! pkg info "$pkg" > /dev/null 2>&1; then
+		for pkg in $DEPENDENCIES; do
+			if ! pkg info -e "$pkg" > /dev/null 2>&1; then
 				echo "Installing missing dependency: $pkg"
-				if ! doas pkg install -y "$pkg"; then
+				if ! doas pkg install -y "$pkg" > /dev/null 2>&1 ; then
 					echo "Failed to install package!!"
 					return 1
 				fi
@@ -148,7 +150,14 @@ fi
 echo "Building base tools..."
 export CC=clang
 export CXX=clang++
-make -C BaseTools > build-log.txt 2>&1
+case "$OS" in
+    Linux)
+	make -C BaseTools > build-log.txt 2>&1
+	;;
+    FreeBSD)
+	gmake -C BaseTools > build-log.txt 2>&1
+	;;
+esac
 if [ $? -ne 0 ]; then
 	echo "Build failed!! Check build log for details..."
 	echo "Consider running 'tail build-log.txt'"
