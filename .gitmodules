@@ -4,3 +4,6 @@
 [submodule "ColdExploitKit"]
 	path = ColdExploitKit
 	url = https://github.com/gjbauer/ColdExploitKit
+[submodule "edk2/ScraperPkg"]
+	path = edk2/ScraperPkg
+	url = https://github.com/gjbauer/ScraperPkg.git
