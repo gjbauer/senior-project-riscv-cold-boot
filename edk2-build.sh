@@ -56,8 +56,29 @@ case "$OS" in
 						echo "Dependency already installed: $pkg"
 					fi
 				done
-            elif [ "$ID" = "linuxmint" ]; then
-                echo "Supported Linux distribution: Linux Mint!!"
+			elif [ "$ID" = "linuxmint" ]; then
+				echo "Supported Linux distribution: Linux Mint!!"
+				
+				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
+				echo "Updating repositories..."
+				if ! sudo apt update -y > /dev/null 2>&1; then
+					echo "Failed to update repositories!!"
+					return 1
+				fi
+				echo "Checking dependencies..."
+				for pkg in $DEPENDENCIES; do
+					if ! dpkg -s "$pkg" > /dev/null 2>&1; then
+						echo "Installing missing dependency: $pkg"
+						if ! sudo apt install -y "$pkg" > /dev/null 2>&1; then
+							echo "Failed to install package!!"
+							return 1
+						fi
+					else
+						echo "Dependency already installed: $pkg"
+					fi
+				done
+			elif [ "$ID" = "debian" ]; then
+				echo "Supported Linux distribution: Debian!!"
 				
 				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
 				echo "Updating repositories..."
