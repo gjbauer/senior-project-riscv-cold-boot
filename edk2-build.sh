@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2025 gjbauer
+# Copyright (c) 2025-2026 gjbauer
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# These instructions assume the user is running a standard Arch Linux system on x86_64
+# These instructions assume the user is running an Arch Linux, Linux Mint, or Debian system
 # If using a different environment, please make the necessary changes
-# Future changes may include multi-platform build support
 
 # Install dependecies
 
@@ -38,7 +37,7 @@ case "$OS" in
 			if [ "$ID" = "arch" ]; then
 				echo "Supported Linux distribution: Arch Linux!!"
 				
-				DEPENDENCIES="git clang base-devel python python-pip acpica dosfstools util-linux"
+				DEPENDENCIES="git clang base-devel python python-pip acpica dosfstools util-linux llvm lld"
 				echo "Updating repositories..."
 				if ! sudo pacman -Sy > /dev/null 2>&1; then
 					echo "Failed to update repositories!!"
@@ -59,7 +58,7 @@ case "$OS" in
 			elif [ "$ID" = "linuxmint" ]; then
 				echo "Supported Linux distribution: Linux Mint!!"
 				
-				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
+				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev llvm lld"
 				echo "Updating repositories..."
 				if ! sudo apt update -y > /dev/null 2>&1; then
 					echo "Failed to update repositories!!"
@@ -80,7 +79,7 @@ case "$OS" in
 			elif [ "$ID" = "debian" ]; then
 				echo "Supported Linux distribution: Debian!!"
 				
-				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev"
+				DEPENDENCIES="git clang build-essential python3 python3-pip acpica-tools dosfstools uuid-dev llvm lld"
 				echo "Updating repositories..."
 				if ! sudo apt update -y > /dev/null 2>&1; then
 					echo "Failed to update repositories!!"
