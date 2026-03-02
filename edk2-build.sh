@@ -34,7 +34,7 @@ case "$OS" in
 	echo "Operating System: Linux"
 		if [ -f /etc/os-release ]; then
 			source /etc/os-release
-			if [ "$ID" = "arch" ]; then
+			if [ "$ID" = "arch" ] || [ "$ID" = "archarm" ]; then
 				echo "Supported Linux distribution: Arch Linux!!"
 				
 				DEPENDENCIES="git clang base-devel python python-pip acpica dosfstools util-linux llvm lld"
