@@ -27,10 +27,6 @@ if [ $? -ne 0 ]; then
 	source ./edk2-build.sh
 fi
 
-echo "Pulling ScraperPkg..."
-
-git clone https://github.com/gjbauer/ScraperPkg.git edk2/ScraperPkg --depth 1 > /dev/null 2>&1
-
 echo "Building ScraperPkg for RISC-V..."
 
 build -a RISCV64 --buildtarget RELEASE -p ScraperPkg/ScraperPkg.dsc -t CLANGDWARF > build-log.txt 2>&1
