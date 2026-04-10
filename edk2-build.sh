@@ -153,7 +153,7 @@ if [ -d "edk2" ]; then
 	cd edk2
 else
 	echo "Cloning EDK II repository and submodules..."
-	git clone https://github.com/tianocore/edk2.git --depth 1 > /dev/null 2>&1
+	git clone https://github.com/gjbauer/edk2.git -b scraperpkg --depth 1 > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		echo "Repository pull failed!!"
 		return 1
